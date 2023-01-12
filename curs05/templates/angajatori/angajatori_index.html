@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+    <a class="btn btn-primary" href ="{% url 'angajatori:adaugare_angajator' %}">Adaugare angajator</a>
+    <table class="table">
+    <thead>
+    <tr>
+        <th>Index</th>
+        <th> Name</th>
+        <th>Created </th>
+        <th> Updated</th>
+        <th>Active </th>
+        <th>Actions</th>
+
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for item in employers_list %}
+        <tr>
+        <td>{{ forloop.counter }}</td>
+        <td> {{ item.name }}</td>
+        <td> {{ item.created_at }}</td>
+        <td> {{ item.updated_at }}</td>
+        <td> {{ item.active }}</td>
+        <td> {{ item.actions }}</td>
+        <td>
+            <a class="btn btn-success" href="#">Editare </a>
+            <a class="btn btn-warning" href="#">Stergere </a>
+            <a class="btn btn-warning" href="#">Activare </a>
+
+        </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+
+{% endblock %}

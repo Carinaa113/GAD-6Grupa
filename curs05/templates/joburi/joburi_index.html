@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block content %}
+    <a class="btn btn-primary" href ="{% url 'joburi:adaugare' %}">Adaugare joburi</a>
+    <table class="table">
+    <thead>
+    <tr>
+        <th>Index</th>
+        <th> Type</th>
+        <th>Url </th>
+        <th> Title</th>
+        <th>Description </th>
+        <th>Salary</th>
+        <th>Currency</th>
+        <th>City</th>
+        <th>Active</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for item in joburi_list %}
+        <tr>
+        <td>{{ forloop.counter }}</td>
+        <td> {{ item.type }}</td>
+        <td> {{ item.url }}</td>
+        <td> {{ item.title }}</td>
+        <td> {{ item.description }}</td>
+        <td> {{ item.salary }}</td>
+        <td> {{ item.currency }}</td>
+        <td> {{ item.city }}</td>
+        <td> {{ item.active }}</td>
+            <td>
+
+            {% if item.active %}
+
+<td style="color: seagreen">
+
+Activ
+{% else %}
+
+<td style="color: purple">
+
+Inactiv
+
+{% endif %}</td>
+
+<td>
+
+<a class="btn btn-success" style="background:lightblue" href="{% url 'joburi:modificare' item.id %}">Editare job</a>
+
+{% if item.active %}
+
+<a class="btn btn-warning" style="background:orange" href="{% url 'joburi:stergere' item.id %}">Dezactivare job</a>
+
+{% else %}
+
+<a class="btn btn-warning" style="background:greenyellow" href="{% url 'joburi:activare' item.id %}">Activare job</a>
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endblock %}
+
